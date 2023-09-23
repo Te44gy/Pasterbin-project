@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Персональные посты</title>
+</head>
+<body>
+<h1> Ваши публикации </h1>
+<div th:each="element : ${posts}">
+    <h1><b th:text="${element.title}+' '"/></h1>
+    <b th:text="'Автор: '+ ${element.getUser().getName()}"/>
+    <br>
+    Пост:
+    <br>
+    <b th:text="${element.post}"/>
+    <br>
+    Лайки: <b th:text="${element.popularity}"/>
+
+    <form th:action="'/pasterbin/editPost/'+${element.Id}" method="get">
+        <button> Редактировать публикацию</button>
+    </form>
+
+    <form th:action="'/pasterbin/deletePost/'+${element.Id}" method="get">
+        <button> Уалить публикацию</button>
+    </form>
+
+    <br>
+    <form action="http://localhost:8083/pasterbin/home">
+        <button>Назад</button>
+    </form>
+
+</div>
+</body>
+</html>

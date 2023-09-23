@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Подробности поста</title>
+</head>
+
+<body>
+<h1>Подробней о посте:</h1>
+
+
+
+<!--<div th:object="${post}">-->
+<!--    <h1 th:text="*{}"> </h1>-->
+<!--</div>-->
+
+<div th:each="element : ${post}">
+    <h1><b th:text="${element.title}+' '"/></h1>
+    <b th:text="'Автор: '+ ${element.getUser().getName()}"/><br>
+    <br>
+    Пост:
+    <br>
+    <b th:text="${element.post}"/><br>
+    <br>
+    Лайки:
+    <b th:text="${element.popularity}"/><br>
+    <form th:action="'/pasterbin/like/'+${element.id}">
+        <button>Нравится</button>
+    </form>
+    <form th:action="'/pasterbin/dislike/'+${element.id}">
+        <button>Не нравится</button>
+    </form>
+</div>
+<br>
+<form action="/pasterbin/home">
+    <button>Назад</button>
+</form>
+
+</body>
+</html>

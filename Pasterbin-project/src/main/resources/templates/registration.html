@@ -1,0 +1,40 @@
+ <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Регистрация</title>
+</head>
+<body>
+Регистрация
+<!--<form action="/registration" method="post">-->
+<!--    <div><label> Логин: <input type="text" name="username"/> </label></div>-->
+<!--    <div><label> Имя: <input type="password" name="name"/> </label></div>-->
+<!--    <div><label> Пароль: <input type="password" name="password"/> </label></div>-->
+<!--    <div><input type="submit" value="Зарегестрироваться"/></div>-->
+<!--</form>-->
+
+<form th:method="post" th:action="'/pasterbin/registration'" th:object="${attributeUser}">
+    <div>
+        Логин:
+        <input type="text" th:field="*{email}" id="email" placeholder="email"/>
+        <div style="color:red"  th:if="${#fields.hasErrors('email')}" th:errors="*{email}"> Name error</div>
+        <br>
+        Имя:
+        <input type="text" th:field="*{name}" id="name" placeholder="Имя"/>
+        <div style="color:red"  th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> Name error</div>
+        <br>
+        Пароль:
+        <input type="password" th:field="*{password}" id="password" placeholder="Пароль"/>
+        <div style="color:red"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> Name error</div>
+        <br>
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>-->
+        <input type="submit" value="Зарегестрироваться"/>
+    </div>
+</form>
+<br>
+<form action="http://localhost:8083/pasterbin/home">
+    <button>Назад</button>
+</form>
+
+
+</body>
+</html>

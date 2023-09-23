@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавление поста</title>
+</head>
+<body>
+<h1>Добавить пост:</h1>
+
+
+
+<!--<p>Введите ваш новый пост:</p><br>-->
+<!--Тема:-->
+<!--<form action="http://localhost:8083/pasterbin/addPost?" method="post">-->
+<!--    <input type="text" name="theme"/><br>-->
+<!--    Содержимое:<br>-->
+<!--    <textarea name="post"></textarea>-->
+<!--    <input type="submit">-->
+<!--</form>-->
+
+<form th:method="post" th:action="addPost" th:object="${attributePost}">
+    <div>
+        <br>
+        Тема:
+        <input type="text" th:field="*{title}" id="title" placeholder="Тема" style="display: inline-block;"/>
+        <br>
+        <br>
+        Содержимое:<br>
+        <textarea th:field="*{post}" id="post" ></textarea>
+        <br>
+        <input type="submit" value="Добавить"/>
+    </div>
+</form>
+
+
+
+<br>
+<br>
+<form action="http://localhost:8083/pasterbin/home">
+    <button>Назад</button>
+</form>
+
+</body>
+</html>

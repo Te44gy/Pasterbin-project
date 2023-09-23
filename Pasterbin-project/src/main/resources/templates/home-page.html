@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<title>Pasterbin главная</title>
+
+<h1>Главная страница pasterbin! </h1><br>
+<h2><b th:text="'Добро пожаловать, '+${attributeUserName}+'!'"/> </h2>
+
+
+<form action="/pasterbin/addPost">
+    <button> Добавить пост</button>
+</form>
+<form action="/pasterbin/personalPosts">
+    <button> К моим публикациям</button>
+</form>
+<br>
+<form th:action="@{/pasterbin/admin}" method="get">
+    <input type="submit" value="Admin action">
+</form>
+<hr>
+<form th:action="@{/pasterbin/login}" method="get">
+    <input type="submit" value="Войти в аккаунт">
+</form>
+
+<form th:action="@{/pasterbin/logout}" method="get">
+    <input type="submit" value="Выйти из аккаунта">
+</form>
+<br>
+<form th:action="@{/pasterbin/registration}" method="get">
+    <input type="submit" value="Создать аккаунт">
+</form>
+<hr>
+<div th:each="element : ${posts}">
+    <h1><b th:text="${element.title}+' '"/></h1>
+    <b th:text="'Автор: '+ ${element.getUser().getName()}"/>
+    <a th:href="'/pasterbin/post/'+${element.Id}">Подробнее...</a><br>
+    <b th:text="'Лайки: '+ ${element.getPopularity()}"/><br><br><br>
+</div>
+
+
+</body>
+</html>
